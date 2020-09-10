@@ -1,1 +1,71 @@
-(window.player||(window.player={})).listControl=function(e,n){var t=document.createElement("div"),a=document.createElement("dl"),r=document.createElement("dt"),s=document.createElement("div"),i=[];t.className="list",r.innerHTML="播放列表",s.className="close",s.innerHTML="关闭",a.appendChild(r),e.forEach(function(e,n){var t=document.createElement("dd");t.innerHTML=e.name,t.addEventListener("touchend",function(){o(n)}),a.appendChild(t),i.push(t)}),t.appendChild(a),t.appendChild(s),n.appendChild(t);var l=t.offsetHeight;function d(){t.style.transition="transform .2s",t.style.transform="translateY("+l+"px)"}function o(e){for(var n=0;n<i.length;n++)i[n].className="";i[e].className="active"}return t.style.transform="translateY("+l+"px)",s.addEventListener("touchend",function(){d()}),o(0),{dom:t,musicList:i,slideUp:function(){t.style.transition="transform .2s",t.style.transform="translateY(0px)"},slideDown:d,changeSelect:o}};
+(function (root) {
+    function listControl(data, wrap) {
+        var list = document.createElement("div"),
+            dl = document.createElement("dl"),
+            dt = document.createElement("dt"),
+            close = document.createElement("div"),
+            musicList = []; //存储所有的歌曲对应的dom
+
+        list.className = 'list';
+        dt.innerHTML = '播放列表';
+        close.className = 'close';
+        close.innerHTML = '关闭';
+
+        dl.appendChild(dt);
+        data.forEach(function (elem, index) {
+            var dd = document.createElement('dd');
+            dd.innerHTML = elem.name;
+            dd.addEventListener('touchend',function(){
+                changeSelect(index);
+            })
+            dl.appendChild(dd);
+            musicList.push(dd);
+        })
+
+        list.appendChild(dl);
+        list.appendChild(close);
+        wrap.appendChild(list);
+
+        var disY = list.offsetHeight;
+        list.style.transform = 'translateY(' + disY + 'px)';
+
+
+        //关闭按钮
+        close.addEventListener('touchend',function () {
+            slideDown();
+        });
+
+        // 列表滑动显示
+        function slideUp() {
+            list.style.transition = 'transform .2s';
+            list.style.transform = 'translateY(0px)';
+        }
+
+        // 列表滑动隐藏
+        function slideDown() {
+            list.style.transition = 'transform .2s';
+            list.style.transform = 'translateY(' + disY + 'px)';
+        }
+
+        //切换选中元素
+        function changeSelect(index) {
+            for (var i = 0; i < musicList.length; i++) {
+                musicList[i].className = '';
+            }
+            musicList[index].className = 'active';
+        }
+
+        changeSelect(0);//默认值
+
+        return {
+            dom: list,
+            musicList: musicList,
+            slideUp: slideUp,
+            slideDown: slideDown,
+            changeSelect:changeSelect
+        }
+    }
+
+
+    root.listControl = listControl;
+}(window.player || (window.player = {})))
