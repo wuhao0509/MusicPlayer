@@ -5,6 +5,6 @@
 
 ## 效果图
 
-<img src="src\images\2020-09-10-21-03-37.png"></img>
+<img src="https://github.com/wuhao0509/MusicPlayer/blob/master/src/images/2020-09-10-21-03-37.png"></img>
 <img src="src\images\2020-09-10-21-04-14.png"></img>
 <img src="src\images\2020-09-10-21-04-31.png"></img>
