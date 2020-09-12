@@ -4,11 +4,5 @@
 
 >数据是模拟的
 
-## 效果图
-
-![](src\images\xiaoguo1.png)
-
-![](src\images\xiaoguo2.png)
-
-![](src\images\xiaoguo3.png)
+Blog：https://wuhao0509.github.io/2020/09/12/MusicPlayer/
 
